@@ -1,0 +1,167 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+	
+	<ui:define name="content">
+		<h2 class="aw-page-title">Lançamento Notinhas</h2>
+
+			<div class="container-fluid div-borda">
+			<h:form id="frmCadNotinha">
+				<div class="row" align="center" >
+					<h4 style="padding-top: -10px;"><b>Dados do Cliente</b> </h4>
+				</div>
+				<div class="row">
+					<div class="col-sm-3 form-group">
+						<p:outputLabel id="lbIdcliente" for="idcliente" class="control-label" value="Código"  />
+						<p:inputText id="idcliente" class="form-control" maxlength="8" name="idcliente"
+							 value="#{notinhaController.txtIdCliente}" onkeyup="numerosAndR(this)" >
+							<p:ajax event="blur" listener="#{notinhaController.clienteById}" 
+								update="dlgPesqCliente,nomecliente,nomeFantasia"/>							
+						</p:inputText>
+						<p:watermark value="Digite o Cod. ou R busca" for="idcliente"/>
+					</div>
+						
+					<div class="col-sm-5 form-group">
+						<p:outputLabel id="lbNomecliente" for="nomecliente" class="control-label" value="Cliente"  />
+						<p:inputText id="nomecliente" class="form-control" maxlength="8" 
+							value="#{notinhaController.cliente.nomeRazao}" disabled="true"/>
+					</div>
+					<div class="col-sm-4 form-group">
+						<p:outputLabel id="lbNomeFantasia" for="nomeFantasia" class="control-label" value="Nome Fantasia" />
+						<p:inputText id="nomeFantasia" class="form-control" maxlength="8" 
+						value="#{notinhaController.cliente.nomeFantasia}" disabled="true"/>	
+					</div>
+				</div>
+				
+				<div class="row" align="center" >
+					<h4 style="padding-top: -10px;"><b>Itens da Notinha</b> </h4>
+				</div>
+				<div class="row" >
+					<div class="col-sm-2 form-group">
+						<p:outputLabel id="lbCodigo" for="codigo" value="Código"/>
+						<p:inputText id="codigo" class="form-control" maxlength="8"  value="#{notinhaController.produto.codigo}"
+							required="#{param['frmCadNotinha:bntSalvarNota']==null}" >
+							<p:ajax event="blur" listener="#{notinhaController.produtoByCodigo}" 
+								update="descricao,valor,quant"/>						
+						</p:inputText>
+					</div>
+					<div class="col-sm-5 form-group">
+						<p:outputLabel id="lbDescricao" for="descricao"  value="Descrição"/>
+						<p:inputText id="descricao" class="form-control" maxlength="50" required="#{param['frmCadNotinha:bntSalvarNota']==null}"  
+							value="#{notinhaController.produto.descricao}" disabled="true"/>
+					</div>
+					
+					<div class="col-sm-2 form-group">
+						<p:outputLabel id="lbValor" for="valor" value="Valor" />
+						<p:inputText id="valor" class="form-control" value="#{notinhaController.itemNotinha.valorItem}"
+							onkeypress="mascaraDinheiro(this, valor);" style="text-align:right" maxlength="9" 
+							required="#{param['frmCadNotinha:bntSalvarNota']==null}" />
+					</div>
+					<div class="col-sm-2 form-group">
+						<p:outputLabel id="lbQuant" for="quant" value="Quantidade" />
+						<p:inputText id="quant" class="form-control" value="#{notinhaController.itemNotinha.quantidade}"
+							onkeyup="numeros(this);" style="text-align:right" maxlength="4" 
+							required="#{param['frmCadNotinha:bntSalvarNota']==null}"/>
+					</div>
+					<div class="col-sm-1 form-group">	
+						<p:spacer height="25"/>
+						<p:commandButton id="bntLancar" value="Lançar" style="right: 10px;" action="#{notinhaController.lancarItem}"
+							update="tItemNotinha,codigo,descricao,valor,quant,bntSalvarNota"  />
+					</div>
+				</div>
+				<div class="row" >
+					<div class="col-sm-12 form-group">
+						<p:dataTable id="tItemNotinha" selectionMode="single"
+							value="#{notinhaController.itemNotinhas}" var="tItem" rowKey="#{tItem.produto.id}"
+							scrollable="true" scrollHeight="250" emptyMessage="Nenhum item lançado">
+							
+							<p:column headerText="Codigo" style="width: 15%" >
+								<p:outputLabel value="#{tItem.produto.codigo}" />
+							</p:column>
+							<p:column headerText="Descrição">
+								<p:outputLabel value="#{tItem.produto.descricao}" />
+							</p:column>
+							<p:column headerText="Valor" style="width: 15%">
+								<p:outputLabel value="#{tItem.valorItem}" />
+							</p:column>
+							<p:column headerText="Quant." style="width: 15%">
+								<p:outputLabel value="#{tItem.quantidade}" />
+							</p:column>
+							<p:column headerText="V. Total" style="width: 15%">
+								<p:outputLabel value="#{tItem.valorTotal}" />
+								<f:facet name="footer">
+									<p:outputLabel value="V. Nota:   R$ #{notinhaController.notinhaBean.valorNotinha}"  >
+										<f:convertNumber minFractionDigits="2" />
+									</p:outputLabel>
+								</f:facet>
+							</p:column>
+								
+							<f:facet name="footer">
+								<p:outputLabel value="( #{fn:length(notinhaController.itemNotinhas)} ) - Pedido(s) lançado(s) " />
+							</f:facet>
+						</p:dataTable>
+					</div>
+					
+					<p:contextMenu for="tItemNotinha">
+				        <p:menuitem value="Delete" update="tItemNotinha" icon="ui-icon-close" />
+				    </p:contextMenu>
+				    
+				    
+					<div class="col-sm-12 form-group" align="center">
+						<p:commandButton id="bntSalvarNota" value="Salvar"  actionListener="#{notinhaController.salvar}" oncomplete="PF('dlgImpressaoNota').show();"
+							update="frmCadNotinha,growl,formDgImpressao:dlgImpNota " disabled="#{fn:length(notinhaController.itemNotinhas)==0}" process="@this" />
+						<p:spacer width="10"></p:spacer>
+						<p:commandButton value="Limpar Tela" action="#{notinhaController.init}"  ajax="false" immediate="true"/>
+					</div>
+				</div>
+				
+		</h:form>
+		<h:form id="formDgImpressao">
+		<p:dialog id="dlgImpNota" widgetVar="dlgImpressaoNota" closable="false" resizable="false" >
+			<div class="col-sm-12 form-group" align="center">
+				<h1> Nota Salva com sucesso </h1>
+			</div>
+			<div class="col-sm-12" >
+				<table style=" width: 98%;">
+				 	<tr>
+				    	<td>N° Nota: </td>
+				    	<td><p:outputLabel value="#{notinhaController.notinhaBean.id}"/> </td>
+				  	</tr>
+				 	<tr>
+				    	<td>Cliente: </td>
+				    	<td><p:outputLabel value="#{notinhaController.notinhaBean.cliente.nomeRazao}"/> </td>
+				  	</tr>
+				  	<tr>
+				    	<td>Fantasia: </td>
+				    	<td><p:outputLabel value="#{notinhaController.notinhaBean.cliente.nomeFantasia}"/> </td>
+				  	</tr>
+						<tr>
+				    	<td>Valor: </td>
+				    	<td><p:outputLabel value="#{notinhaController.notinhaBean.valorNotinha}"/> </td>
+				  	</tr>
+				</table>
+			</div>
+			<div class="col-sm-12" align="center">
+				<p:commandButton value="Imprimir" action="#{notinhaController.geraNotinha}"
+					ajax="false" onclick="this.form.target='_blank'" icon=" ui-icon-print"/>
+				<p:commandButton value="Sair" action="#{notinhaController.init}"  update="frmCadNotinha"
+					onsuccess="PF('dlgImpressaoNota').hide();" />
+			</div>
+		</p:dialog>
+		</h:form>
+			</div>
+		
+		<p:dialog id="dlgPesqCliente" widgetVar="dlgPesquisaCliente" width="800" resizable="false">
+			<ui:include src="/cliente/pesquisa-cliente-pedido.xhtml"></ui:include>
+		</p:dialog>
+		
+			
+		
+		
+	</ui:define>
+	
+</ui:composition>

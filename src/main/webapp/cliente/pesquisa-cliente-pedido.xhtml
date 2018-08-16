@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf"
+	>
+
+	<ui:component >
+	
+
+		<h:form id="frmCadCliente">
+			<div class="container-fluid div-borda">
+				<div class="row" >
+					<div class="col-sm-1 form-group">
+						<label id="lbTipo2" for="paremBusca" class="control-label" style="vertical-align: middle !important;">Pesquisar</label>
+					</div>
+					<div class="col-sm-3 form-group">
+						<h:selectOneMenu id="paremBusca2"
+							value="#{clienteController.paramBusca}"
+							styleClass="form-control dropdown">
+							<f:selectItem itemLabel="Selecione o Parametro de Busca" itemValue="nomeRazao" />
+							<f:selectItem itemLabel="Nome/Razão Social" itemValue="nomeRazao" />
+							<f:selectItem itemLabel="Nome Fantazia" itemValue="nomeFantasia" />
+							<f:selectItem itemLabel="CPF/CNPJ" itemValue="cpfCnpj" />
+							<f:selectItem itemLabel="Código" itemValue="id" />
+							<f:ajax render="frmCadCliente"
+								listener="#{clienteController.select}" />
+						</h:selectOneMenu>
+					</div>
+
+					<div class="form-group col-sm-7 ">
+						<p:inputText styleClass="form-control"
+							value="#{clienteController.campoBusca}" >
+							<p:ajax event="keyup" listener="#{clienteController.pesquisaCliente}" update="tabelaCliente"/>
+								
+							</p:inputText>
+					</div>
+					
+					
+
+				</div>
+			</div>
+			<br/>
+			<div class="container-fluid div-borda">
+				<div class="row">
+					<div class="table-responsive col-sm-12" align="center">
+						<p:dataTable id="tabelaCliente" value="#{clienteController.clientes}" var="cli"
+							scrollable="true" scrollHeight="450" selectionMode="single" rowKey="#{cli.id}"
+							styleClass="table table-striped" reflow="true" selection="#{clienteController.clienteSelect}">
+							<p:column style="width: 5%">
+								<f:facet name="header">Código</f:facet>
+								<h:outputText value="#{cli.id}" />
+							</p:column>
+							<p:column style="width: 25%">
+								<f:facet name="header">Nome / Razao Social</f:facet>
+								<h:outputText value="#{cli.nomeRazao}" />
+							</p:column>
+							<p:column style="width: 25%">
+								<f:facet name="header">Nome Fantasia</f:facet>
+								<h:outputText value="#{cli.nomeFantasia}" />
+							</p:column>
+							<p:column style="width: 15%">
+								<f:facet name="header">CPF / CNPJ</f:facet>
+								<h:outputText value="#{cli.cpfCnpjView}" />
+							</p:column>
+							
+							<p:column style="width: 10%">
+								
+								<p:commandButton icon="ui-icon-pencil" style="width: 32px;  height: 28px;"
+									styleClass="btn btn-primary btn-lg" oncomplete="PF('dlgPesquisaCliente').hide();" update="frmCadNotinha:idcliente">
+									<f:setPropertyActionListener value="#{cli.id}" target="#{notinhaController.txtIdCliente}"  />
+								</p:commandButton>
+								
+							</p:column>
+						</p:dataTable>
+
+					</div>
+				</div>
+			</div>
+
+
+		</h:form>
+	</ui:component>
+
+</ui:composition>

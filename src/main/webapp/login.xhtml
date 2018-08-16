@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<h:outputStylesheet library="css" name="estilos.css" />
+	<style type="text/css">
+	.ui-widget {
+	font-size: 15px !important;}
+
+	</style>
+</h:head>
+<h:body >
+	<p:dialog header="ConProd" modal="false" closable="false"
+		position="center" minWidth="300" width="400" draggable="false"
+		resizable="false" visible="true">
+
+		<center>
+			<b> <h:outputText value="Usuário e/ou senha inválidos!"
+					rendered="#{param.error}" style="color: red" />
+			</b>
+			<form action="spring_security_check" method="post">
+				<p:panelGrid  style="font-weight: bold; width:100%;" styleClass="semBorda">
+					<p:row> 
+						<p:column style="width:10%;">
+							<h:outputLabel for="username" value="Usuário:" />
+						</p:column>
+						<p:column>
+							<h:inputText id="username" style="width:100%;"/>	
+						</p:column>
+					</p:row>	
+					<p:row>
+						<p:column>
+							<h:outputLabel for="password" value="Senha:" />
+						</p:column>
+						<p:column>
+							<h:inputSecret id="password" style="width:100%;"/>
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column colspan="2" style="text-align:center">
+							<h:commandButton value="Logar" />
+						</p:column>
+					</p:row>
+				</p:panelGrid>
+			</form>
+		</center>
+	</p:dialog>
+</h:body>
+
+
+
+</html>

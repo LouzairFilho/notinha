@@ -1,0 +1,139 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/Layout.xhtml">
+
+	<ui:define name="content">
+		<h1 class="aw-page-title">Cadastro de Clientes</h1>
+
+		<h:form id="frmCadCliente">
+			<div class="container-fluid div-borda" >
+				<p:messages id="messagesCliente" showDetail="true" autoUpdate="true" closable="true" />
+	
+					<div class="row">
+						<div class="col-sm-3 form-group">
+							<p:outputLabel id="lbIdcliente" for="idcliente" class="control-label" value="Código" style="padding-right: 160px" />
+							<p:button outcome="/cliente/pesquisa-cliente.jsf" icon="ui-icon-search"  style="width: 32px;  height: 28px;" />
+							<p:inputText id="idcliente" class="form-control" maxlength="8"
+								 value="#{clienteController.clienteBean.id}" readonly="#{clienteController.isAlterando}">
+								<p:ajax event="blur" listener="#{clienteController.buscarById}" update="frmCadCliente"/>
+								
+							</p:inputText>
+							<p:watermark value="Deixe Vazio para Novo Cliente" for="idcliente"/>
+						</div>
+						
+						<div class="col-sm-3 form-group radio" align="center">
+							<p:outputLabel id="lbTipo" for="tipo" class="control-label" value="Tipo de Pessoa"/>
+							<p:selectOneRadio value="#{clienteController.clienteBean.tipoPessoa}" id="tipo" name="tipo" >
+								<f:selectItem itemLabel="Física" itemValue="PF" />
+								<f:selectItem itemLabel="Jurídica" itemValue="PJ" />
+								<p:ajax update="frmCadCliente" listener="#{clienteController.trocarPjPf}"/>
+							</p:selectOneRadio>
+						</div>
+						
+						<div class="col-sm-6 form-group">
+							<p:outputLabel id="lbCpfCnpj1" for="cpfCnpj" class="control-label" value="CPF" rendered="#{clienteController.isFisica}"/>
+							<p:outputLabel id="lbCpfCnpj2" for="cpfCnpj" class="control-label" value="CNPJ" rendered="#{clienteController.isJuridica}"/>
+							<p:inputMask id="cpfCnpj" class="form-control"  mask="#{clienteController.mascaraCpfCnpj}" maxlength="14"
+								required="true" requiredMessage="Campo CPF / CNPJ Obrigatório" value="#{clienteController.clienteBean.cpfCnpj}"/>
+								
+						</div>
+					</div>
+					<div class="form-group">
+						<p:outputLabel id="lbnomeRazao" for="nomeRazao" class="control-label" value="Nome" rendered="#{clienteController.isFisica}"/>
+						<p:outputLabel id="lbnomeRazao1" for="nomeRazao" class="control-label" value="Razão Social" rendered="#{clienteController.isJuridica}"/>
+						<p:inputText id="nomeRazao" class="form-control" value="#{clienteController.clienteBean.nomeRazao}"
+							required="true" requiredMessage="Campo Nome / Razão Social Obrigatório"/>
+					</div>
+					<div class="form-group" >
+						<p:outputLabel for="fantasia" class="control-label"  value="Nome Fantasia"/>
+						<p:inputText id="fantasia" class="form-control" value="#{clienteController.clienteBean.nomeFantasia}"/>
+					</div>
+				
+					<div class="row">
+						<div class="col-sm-3 form-group">
+							<p:outputLabel id="lbTel1" for="tel1" value="Telefone"/>
+							<p:inputMask id="tel1" class="form-control" maxlength="15" mask="(99) 9999-9999" value="#{clienteController.clienteBean.telefone}" />
+						</div>
+						<div class="col-sm-3 form-group">
+							<p:outputLabel id="lbTel2" for="tel2"  value="Celular"/>
+							<p:inputMask id="tel2" class="form-control" maxlength="15" mask="(99) 9 9999-9999" value="#{clienteController.clienteBean.celular}" />
+						</div>
+					
+						<div class="col-sm-6 form-group">
+							<p:outputLabel id="lbemail" for="email" value="E-mail" />
+							<p:inputText id="email" class="form-control" value="#{clienteController.clienteBean.email}"/>
+						</div>
+					</div>
+					
+					<div class="row">
+						<div class="col-sm-3 form-group">
+							<p:outputLabel id="lbContato" for="contato" value="Contato" />
+							<p:inputText id="contato" class="form-control" value="#{clienteController.clienteBean.contato}"/>
+						</div>
+						<div class="col-sm-3 form-group">
+							<p:outputLabel id="lbCep" for="cep" value="CEP" />
+							<p:inputMask id="cep" class="form-control" maxlength="9"
+							mask="99999-999" value="#{clienteController.clienteBean.cep}">
+								<p:ajax event="blur" listener="#{clienteController.buscaCep}" update="lagradouro,bairro,cidade,estado"/>
+							</p:inputMask>
+						</div> 
+
+						<div class="col-sm-6 form-group">
+							<p:outputLabel id="lbLagradouro" for="lagradouro" value="Lagradouro" />
+							<p:inputText id="lagradouro" class="form-control" value="#{clienteController.clienteBean.endereco}"/>
+						</div>
+					</div>
+
+
+					<div class="row">
+						
+						<div class="col-sm-6 form-group">
+
+							<p:outputLabel for="bairro" value="Bairro" />
+							<p:inputText id="bairro" class="form-control" value="#{clienteController.clienteBean.bairro}"/>
+						</div>
+					
+					<div class="col-sm-4 form-group">
+						<p:outputLabel id="lbCidade" for="cidade" class="control-label" value="Cidade"/>
+						<p:inputText id="cidade" class="form-control" value="#{clienteController.clienteBean.cidade}"/>
+					</div>
+					<div class="col-sm-2 form-group">
+						<p:outputLabel id="lbEstado" for="estado" class="control-label" value="Estado"/>
+						<p:inputText id="estado" class="form-control" value="#{clienteController.clienteBean.uf}" maxlength="2"/>
+					</div>
+					
+				</div>
+					
+					
+
+					
+					<div class="row">
+
+						<div class="col-sm-12 form-group">
+
+							<p:outputLabel for="estado" value="Observações"/>
+							
+							<p:inputTextarea rows="4" cols="50" maxlength="250" class="form-control" value="#{clienteController.clienteBean.obs}" style="font-size:16px !important; font-weight:bold"/>
+							
+							
+						</div>
+						
+					</div>
+
+
+					<div class="col-sm-12 form-group" align="center">
+						<p:commandButton value="Salvar"  actionListener="#{clienteController.salvar}" update="frmCadCliente"/>
+						<p:spacer width="10"></p:spacer>
+						<p:commandButton value="Limpar Tela" action="#{clienteController.limpaTelaCadastro}"  ajax="false"/>
+					</div>
+				</div>
+			
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

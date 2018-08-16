@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.6.0.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="notinha" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2031a4fe-a212-4be1-bee7-7977b8591bf9">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="222"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="769"/>
+	<parameter name="idNotinha" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[1]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="cliente" class="com.notinha.entidades.Cliente">
+		<fieldDescription><![CDATA[cliente]]></fieldDescription>
+	</field>
+	<field name="desconto" class="java.lang.Double">
+		<fieldDescription><![CDATA[desconto]]></fieldDescription>
+	</field>
+	<field name="dataNotinha" class="java.util.Date">
+		<fieldDescription><![CDATA[dataNotinha]]></fieldDescription>
+	</field>
+	<field name="itemNotinha" class="java.util.List">
+		<fieldDescription><![CDATA[itemNotinha]]></fieldDescription>
+	</field>
+	<field name="valorNotinha" class="java.lang.Double">
+		<fieldDescription><![CDATA[valorNotinha]]></fieldDescription>
+	</field>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="status" class="com.notinha.entidades.Status">
+		<fieldDescription><![CDATA[status]]></fieldDescription>
+	</field>
+	<field name="quantItens" class="java.lang.Integer">
+		<fieldDescription><![CDATA[quantItens]]></fieldDescription>
+	</field>
+	<field name="produto" class="com.notinha.entidades.Produto">
+		<fieldDescription><![CDATA[produto]]></fieldDescription>
+	</field>
+	<field name="valorItem" class="java.lang.Double">
+		<fieldDescription><![CDATA[valorItem]]></fieldDescription>
+	</field>
+	<field name="valorTotal" class="java.lang.Double">
+		<fieldDescription><![CDATA[valorTotal]]></fieldDescription>
+	</field>
+	<field name="id_1" class="java.lang.Integer">
+		<fieldDescription><![CDATA[id]]></fieldDescription>
+	</field>
+	<field name="quantidade" class="java.lang.Integer">
+		<fieldDescription><![CDATA[quantidade]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="68" splitType="Stretch">
+			<rectangle radius="4">
+				<reportElement x="0" y="4" width="554" height="59" uuid="fe068102-bf3e-41e1-a5a7-16de1e92d0d9"/>
+			</rectangle>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="554" height="30" uuid="adc63794-5ce3-45e7-a6d4-5543c23f9b6c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="22" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nota de Serviço]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="30" width="554" height="36" uuid="ae91cc0f-3af7-413e-b283-af0c40a67882"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[L&M Bordados Computadorizados]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="6" width="55" height="26" uuid="6c7c4242-db1e-4ef7-aeba-bc1ef0311cb1"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Nota:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="429" y="24" width="55" height="26" uuid="544bbb33-2eee-424a-ba6e-3d31d260db3c"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="484" y="6" width="70" height="26" uuid="9535910a-ed6e-4cae-906f-6574d7731bd3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField pattern="M/d/yy">
+				<reportElement x="484" y="24" width="70" height="26" uuid="ada74b45-cfc4-47a2-bf2c-188f9afdb9f0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataNotinha}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="62" splitType="Stretch">
+			<rectangle radius="4">
+				<reportElement x="0" y="-2" width="554" height="61" uuid="c8245479-a3e5-47a2-a53c-96637648e927"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="-1" width="55" height="20" uuid="30997ad8-09b9-487e-ba15-e3bc75ae2632"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="65" height="20" uuid="ed97a41d-191a-46e4-8ba2-36ede5d67461"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="-1" width="80" height="20" uuid="b7a5d002-cad5-4a65-8abc-96a90501ba3b"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CPF/CNPJ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="19" width="107" height="20" uuid="dff7d5bf-7c28-49d3-870e-55a5aa09de12"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nome Fantasia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="-1" width="275" height="20" uuid="67517450-6419-4979-b797-8b081fe203cd"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getNomeRazao()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="39" width="275" height="20" uuid="2c4c2af3-37bc-40aa-a91f-39a05a03b4d2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getTelefones()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="19" width="447" height="20" uuid="7d0aeebf-37e3-4a53-9346-4c54bf88c3e0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getNomeFantasia()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="-1" width="144" height="20" uuid="16e95712-547a-463a-ba1b-95162c2fa170"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getCpfCnpjView()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<rectangle radius="4">
+				<reportElement x="0" y="1" width="554" height="20" uuid="91006dfe-0a4c-4866-ba87-437f62022989"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="1" width="80" height="20" uuid="1e582bcd-df15-4d26-bab4-81c98346e6fc"/>
+				<box leftPadding="1">
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="474" y="1" width="80" height="20" uuid="b027aa19-bc41-42b3-bb7d-7e17ede982a6"/>
+				<box leftPadding="1">
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[V. Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="394" y="1" width="80" height="20" uuid="7f4f1482-6d44-43f0-b855-9b20d9bec3d1"/>
+				<box leftPadding="1">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Quant.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="Float" x="314" y="1" width="80" height="20" uuid="353c3962-8cfa-44c2-92ac-1107b1468715"/>
+				<box leftPadding="1">
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Valor
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="1" width="234" height="20" uuid="23759ffc-55ef-49db-8a44-28975f2c37eb"/>
+				<box leftPadding="1">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="80" height="20" uuid="1b0f1f72-6dfd-4c17-8f73-9ac7db1c9a79"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto}.getCodigo()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="0" width="234" height="20" uuid="5d012456-50b7-47f6-a7c0-b6ab9dc97f37"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto}.getDescricao()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="314" y="0" width="80" height="20" uuid="bf783825-9f31-484e-a25e-938a7c077764"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorItem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="394" y="0" width="80" height="20" uuid="945c2f10-d1a4-4b3c-9520-fc4436c29ff4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="474" y="0" width="80" height="20" uuid="650f1ca4-84ed-496c-9585-63f0ee10598e"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorTotal}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="4">
+				<reportElement x="0" y="20" width="554" height="20" uuid="dd602d0f-3466-4d6a-b0de-59684de6fb97"/>
+			</rectangle>
+			<textField pattern="¤#,##0.##;¤-#,##0.##">
+				<reportElement x="475" y="20" width="79" height="20" uuid="eac4c98a-d04f-4a12-a426-ac41e4d838d4"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorNotinha}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤#,##0.##;¤-#,##0.#">
+				<reportElement x="394" y="20" width="81" height="20" uuid="16398e3d-f72c-4fa2-af93-02a5196a5888"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantItens}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="314" y="20" width="80" height="20" uuid="a46f1426-2f02-439a-8efe-7144d5214c3f"/>
+				<box leftPadding="1">
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Totais:]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="10" width="553" height="1" uuid="4dc42391-5cd6-4d95-9db8-3b7a241b9a28"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="210" splitType="Stretch">
+			<rectangle radius="4">
+				<reportElement x="0" y="-2" width="554" height="61" uuid="5b9595df-808b-4228-aa70-c6262580949c"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="-1" width="55" height="20" uuid="e61da2e6-c749-4934-ae67-06a15726d9cc"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Cliente:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="65" height="20" uuid="18935038-6562-4ded-9516-62d72de43820"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Telefone:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="330" y="-1" width="80" height="20" uuid="747aa109-0cf1-42cc-afb4-8af65d1b55cd"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[CPF/CNPJ:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="19" width="107" height="20" uuid="c27ccf41-83c7-4f9b-89eb-5552d98ef87f"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Nome Fantasia:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="55" y="-1" width="275" height="20" uuid="510f87ee-af3f-4cc1-b124-bd2e902a7d28"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getNomeRazao()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="39" width="275" height="20" uuid="1a0f7ebf-b34b-439c-9ab7-adcf87f11d2d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getTelefones()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="107" y="19" width="447" height="20" uuid="54a87b0b-10db-4f4d-a67e-5e535aa1f921"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getNomeFantasia()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="70" width="70" height="20" uuid="b47b8b14-b0b2-4446-acac-e6986f8402d4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="70" width="60" height="20" uuid="886f4b1e-2d90-401a-92db-5b05f1ad92de"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° Nota:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="130" y="70" width="80" height="20" uuid="0cca9591-c6ad-46ab-945e-7fcf90fe7842"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[D.Nota:]]></text>
+			</staticText>
+			<textField pattern="M/d/yy">
+				<reportElement x="210" y="70" width="70" height="20" uuid="a7d6470d-2465-426e-bbb8-f95c0c72230b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataNotinha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="280" y="70" width="50" height="20" uuid="dcf53f7e-09af-4871-a564-8c38722d1461"/>
+				<box leftPadding="1">
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Quant.]]></text>
+			</staticText>
+			<textField pattern="¤#,##0.##;¤-#,##0.#">
+				<reportElement x="330" y="70" width="81" height="20" uuid="45de7cfe-3a75-4fc6-8cc4-947c5663695f"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantItens}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="Float" x="420" y="70" width="50" height="20" uuid="169a1611-d952-48b7-b9d5-8ad34f46c69f"/>
+				<box leftPadding="1">
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Valor:]]></text>
+			</staticText>
+			<textField pattern="¤#,##0.##;¤-#,##0.##">
+				<reportElement x="470" y="70" width="79" height="20" uuid="0288da21-7e25-42b2-b962-8452f9c8feeb"/>
+				<box rightPadding="3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valorNotinha}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="140" y="186" width="280" height="1" uuid="cb53af6b-e9f7-4f27-a621-3eace6418e47"/>
+			</line>
+			<staticText>
+				<reportElement positionType="Float" x="140" y="186" width="279" height="20" uuid="b99e2e48-d9b4-4350-818c-930df4d6d1fd"/>
+				<box leftPadding="1">
+					<pen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+					<paragraph lineSpacing="Single" leftIndent="2"/>
+				</textElement>
+				<text><![CDATA[Assinatura]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="-1" width="144" height="20" uuid="b494b055-eb24-4250-aa90-0c79beaf7cfc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="14"/>
+					<paragraph leftIndent="2"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cliente}.getCpfCnpjView()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
